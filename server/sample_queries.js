@@ -46,3 +46,23 @@
 //     }
 //   }
 // }
+
+// mutation {
+//   addAuthor (name:"Kiran", age: 30) {
+//     name
+//     age
+//   }
+// }
+
+// {
+//   books {
+//     name
+//     genre
+//     id
+//     author{
+//       name
+//       age
+//       id
+//     }
+//   }
+// }
