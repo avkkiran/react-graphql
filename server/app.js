@@ -10,6 +10,7 @@
 
 // create a mongo db instance in mlab.com
 // db user details: kiranavk/sails123
+// cloud.mongodb.com credentials: kiran.adhikarla@yahoo.co.in/ExpImp123$
 
 let express = require("express");
 let graphqlHTTP = require("express-graphql");
@@ -22,7 +23,6 @@ let uri = "mongodb+srv://avkkiran:sails123@graphqlmongocluster-iaxgr.mongodb.net
 
 let app = express();
 let mongoOptions = {
-    dbName: "test",
     useNewUrlParser: true
 };
 // let client = new MongoClient(uri, mongoOptions);
