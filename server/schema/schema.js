@@ -9,7 +9,8 @@ const {
     GraphQLSchema,
     GraphQLID,
     GraphQLInt,
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull
 } = graphql;
 
 //dummy data
@@ -30,7 +31,7 @@ const BookType = new GraphQLObjectType({
     name: "Book",
     fields: () => ({        // we wrap the fields inside a function as otherwise the graphql doesn't know what AuthorType is as it is defined below and not above.
         id: { type: GraphQLID }, // if we take id type as GraphQLString, then we need to pass only string to query, 
-                                // if we take GraphQLID, it works with any be it string or interger as well.
+                                // if we take GraphQLID, it works with any type, be it string or integer.
         name: { type: GraphQLString },
         genre: { type: GraphQLString },
         author: {
@@ -108,8 +109,8 @@ const Mutation = new GraphQLObjectType({
         addAuthor: {
             type: AuthorType,
             args: {
-                name: { type: GraphQLString },
-                age: {type: GraphQLInt}
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                age: { type: new GraphQLNonNull(GraphQLInt) }
             },
             resolve(parent, args) {
                 let author = new Author({
@@ -122,9 +123,9 @@ const Mutation = new GraphQLObjectType({
         addBook: {
             type: BookType,
             args: {
-                name: { type: GraphQLString },
-                genre: { type: GraphQLString },
-                authorId: { type: GraphQLID }
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                genre: { type: new GraphQLNonNull(GraphQLString) },
+                authorId: { type: new GraphQLNonNull(GraphQLID) }
             },
             resolve(parent, args) {
                 let book = new Book({
