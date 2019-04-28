@@ -16,12 +16,16 @@ let express = require("express");
 let graphqlHTTP = require("express-graphql");
 let schema = require("./schema/schema");
 let mongoose = require("mongoose");
+let cors = require("cors");
 // let MongoClient = require("mongodb").MongoClient;
 // let uri = "mongodb+srv://avkkiran:sails123@graphqlmongocluster-iaxgr.mongodb.net/test?retryWrites=true";
 let uri = "mongodb+srv://avkkiran:sails123@graphqlmongocluster-iaxgr.mongodb.net/test?retryWrites=true";
 
-
 let app = express();
+
+// allow cross origin requests
+app.use(cors());
+
 let mongoOptions = {
     useNewUrlParser: true
 };
