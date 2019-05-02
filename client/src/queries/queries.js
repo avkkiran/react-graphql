@@ -20,12 +20,21 @@ const getAuthorsQuery = gql`
     }
 `
 
-const getBookDetails = gql`
-    {
-        book(id:$ID!) {
+const getBookQuery = gql`
+    query($id:ID){
+        book(id:$id) {
             name
-            author
+            genre
             id
+            author {
+                id
+                name
+                age
+                books {
+                    name
+                    id
+                }
+            }
         }
     }
 `
@@ -41,4 +50,4 @@ const addBookMutation = gql`
 `
 
 // exclamation is to say that it is required.
-export { getBooksQuery, getAuthorsQuery, addBookMutation }
+export { getBooksQuery, getAuthorsQuery, addBookMutation, getBookQuery }
